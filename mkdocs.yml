@@ -1,0 +1,7 @@
+site_name: Financial Advisor CEP Docs
+theme:
+  name: material
+
+plugins:
+  - plantuml:
+      puml_url: http://plantuml:8080/

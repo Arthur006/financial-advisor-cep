@@ -1,0 +1,22 @@
+
+services:
+  mkdocs:
+    build:
+      context: .
+      dockerfile: Dockerfile.mkdocs
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/app
+    networks:
+      - docs
+
+  plantuml:
+    image: plantuml/plantuml-server:jetty
+    ports:
+      - "8080:8080"
+    networks:
+      - docs
+
+networks:
+  docs:
