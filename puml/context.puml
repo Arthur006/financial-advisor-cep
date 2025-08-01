@@ -1,0 +1,24 @@
+
+@startuml
+
+!includeurl https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+!$ICONURL = "https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v3.0.0/icons"
+!include $ICONURL/common.puml
+!include $ICONURL/devicons2/supabase.puml
+!include $ICONURL/devicons2/vercel_original_wordmark.puml
+!include $ICONURL/devicons2/amazonwebservices_wordmark.puml
+
+Person(client, "Client", "Inputs financial data")
+Person(advisor, "Advisor", "Manages clients")
+
+System(cep, "CEP Platform", "NextJS fullstack webapp", $sprite="vercel_original_wordmark") 
+System(supa, "Supabase", "User relationship management, authentication, long term object storage")
+System(aws, "AWS", "File resize service, email servie", $sprite="amazonwebservices_wordmark")
+
+Rel(client, cep, "Uses")
+Rel(advisor, cep, "Uses")
+Rel(cep, supa, "Uses")
+Rel(cep, aws, "Uses")
+
+@enduml
