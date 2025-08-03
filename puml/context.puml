@@ -8,17 +8,19 @@
 !include $ICONURL/devicons2/supabase.puml
 !include $ICONURL/devicons2/vercel_original_wordmark.puml
 !include $ICONURL/devicons2/amazonwebservices_wordmark.puml
+!include $ICONURL/devicons2/supabase.puml
 
 Person(client, "Client", "Inputs financial data")
 Person(advisor, "Advisor", "Manages clients")
 
 System(cep, "CEP Platform", "NextJS fullstack webapp", $sprite="vercel_original_wordmark") 
-System(supa, "Supabase", "User relationship management, authentication, long term object storage")
+System(supa, "Supabase", "User relationship management, authentication, long term object storage", $sprite="supabase")
 System(aws, "AWS", "File resize service, email servie", $sprite="amazonwebservices_wordmark")
 
 Rel(client, cep, "Uses")
 Rel(advisor, cep, "Uses")
 Rel(cep, supa, "Uses")
 Rel(cep, aws, "Uses")
+Rel(aws, supa, "Uploads resized images to")
 
 @enduml

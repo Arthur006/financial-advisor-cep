@@ -10,8 +10,6 @@
 !include AWSPuml/Storage/SimpleStorageService.puml
 !include AWSPuml/Compute/Lambda.puml
 
-LAYOUT_WITH_LEGEND()
-
 Person(client, "Client", "Inputs financial data")
 Person(advisor, "Advisor", "Manages clients")
 
