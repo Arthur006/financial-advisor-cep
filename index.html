@@ -214,7 +214,7 @@
 
 
 <h1 id="financial-advisor-cep">Financial Advisor CEP</h1>
-<p>Financial Advisor Client Engagement Platform is a project started by me (Arthur Hoffmann).</p>
+<p>Financial Advisor Client Engagement Platform.</p>
 <p>The platform aims to help Financial Advisors by eliminating some of the friction experienced when on-boarding new clients. Especially the process of data capture, and communication with Superannuation/Insurance funds. </p>
 <h1 id="1-introduction">1. Introduction</h1>
 <p>For Financial Advisors to give financial advice, they typically need to access a client's superannuation/insurance policy information.
@@ -228,16 +228,16 @@ This process is all done via email and is slow and error prone.</p>
 <li>Allow advisors to verify clients information</li>
 <li>Automate advisor emails to the client's super/insurance companies</li>
 </ul>
-<h1 id="1-architecture">1. Architecture</h1>
+<h1 id="2-architecture">2. Architecture</h1>
 <p>The CEP was written using <strong>NextJS</strong> and is hosted on <strong>Vercel</strong>.
 Hosting on Vercel has its limitations (free tier hosting limits process execution time) and has driven multiple design decisions.
 This includes breaking out CPU intensive functionality to AWS lambdas.</p>
-<h2 id="11-context-diagram">1.1 Context Diagram</h2>
-<p>Context diagram shows the interaction between all systems involved in the web app.
-<img alt="" src="images/context.svg" /></p>
-<h2 id="12-container-diagram">1.2 Container Diagram</h2>
-<p>Container diagram provides more information on the internals of the 
-<img alt="" src="images/container.svg" /></p>
+<h2 id="21-context-diagram">2.1 Context Diagram</h2>
+<p>Context diagram shows the interaction between all systems involved in the web app.</p>
+<p><img alt="" src="images/context.svg" /></p>
+<h2 id="22-container-diagram">2.2 Container Diagram</h2>
+<p>Container diagram provides more details on the internal operation of all systems involved in the web app.</p>
+<p><img alt="" src="images/container.svg" /></p>
 
 
 
