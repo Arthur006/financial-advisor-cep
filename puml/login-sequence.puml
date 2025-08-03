@@ -1,0 +1,40 @@
+@startuml
+
+actor "Priveleged User" as Super
+actor Advisor 
+actor Client
+participant "CEP App" as App
+participant "Supabase PostgresSQL" as Postgres
+participant "Supabase Auth" as Auth
+participant "Azure Social Auth" as Azure
+
+== Advisor Authentication ==
+Super -> Postgres: Add advisor (Name/Email) to 'Invited' table 
+Advisor -> App: Login
+App -> Postgres: Verify advisor exists in 'Invited' table 
+alt Advisor is Invited
+    App -> Auth: Social sign-in
+    Auth -> Azure: Outlook login
+    Azure -> Auth: access_token, refresh_token
+    Auth -> App: Authenticated session
+    App -> Advisor: Redirect to '/dashboard' page
+    Advisor -> App: Create a new client (Name, Email)
+    App -> Postgres: Create row in 'clients' table (PK_advisor_id, Name, Email)
+    App -> Auth: Create new user using email sign-up
+else Advisor is not Invited
+    App -> Advisor: Redirect to '/error' page
+end
+
+== Client Authentication ==
+Client -> App : Login (Email) 
+App -> Auth: Login using email
+alt Client exists
+    Auth -> Client: Send OTP verification code to inbox (Mailgun SMTP)
+    Client -> App: Input verification code
+    App -> Client: Redirect to '/details' page
+else Client does not exist
+    Auth -> App: Error client does not exist
+    App -> Client: Display error (not registed in system)
+end
+
+@enduml
