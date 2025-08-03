@@ -14,7 +14,9 @@ To reduce the overall friction of this process, a web application was created th
 
 - Allow advisors to register new clients (via name and email)
 - Provide set forms to capture client information reliably
-- Allow advisors to verify clients information
+- Automatically populate third-patry-consent form
+- Handle image uploads of the signed client forms
+- Allow advisors to verify client information
 - Automate advisor emails to the client's super/insurance companies
 
 # 2. Architecture
