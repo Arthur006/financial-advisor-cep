@@ -1,5 +1,5 @@
 # Financial Advisor CEP
-Financial Advisor Client Engagement Platform is a project started by me (Arthur Hoffmann).
+Financial Advisor Client Engagement Platform.
 
 The platform aims to help Financial Advisors by eliminating some of the friction experienced when on-boarding new clients. Especially the process of data capture, and communication with Superannuation/Insurance funds. 
 
@@ -17,15 +17,17 @@ To reduce the overall friction of this process, a web application was created th
 - Allow advisors to verify clients information
 - Automate advisor emails to the client's super/insurance companies
 
-# 1. Architecture
+# 2. Architecture
 The CEP was written using **NextJS** and is hosted on **Vercel**.
 Hosting on Vercel has its limitations (free tier hosting limits process execution time) and has driven multiple design decisions.
 This includes breaking out CPU intensive functionality to AWS lambdas.
 
-## 1.1 Context Diagram
+## 2.1 Context Diagram
 Context diagram shows the interaction between all systems involved in the web app.
+
 ![](images/context.svg)
 
-## 1.2 Container Diagram
-Container diagram provides more information on the internals of the 
+## 2.2 Container Diagram
+Container diagram provides more details on the internal operation of all systems involved in the web app.
+
 ![](images/container.svg)
