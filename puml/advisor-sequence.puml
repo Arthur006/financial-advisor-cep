@@ -1,0 +1,35 @@
+@startuml
+
+actor Advisor 
+participant "CEP App Frontend" as Frontend
+participant "CEP App Backend" as Backend
+participant "Supabase PostgresSQL" as Postgres
+participant "Supabase Storage" as Storage
+participant "AWS Lambda" as Lambda
+
+== Classify client forms ==
+Advisor -> Frontend: Download signed forms
+Frontend -> Storage: Request from signed url
+Storage -> Frontend: Client forms
+Frontend -> Advisor: Client forms
+Advisor -> Frontend: Classify forms with corresponding Policy email
+
+== Verify client identification ==
+Advisor -> Frontend: Download client identification
+Frontend -> Storage: Request from signed url 
+Storage -> Frontend: Client identification image
+Frontend -> Advisor: Client identification image
+Advisor -> Advisor: Verify (sign) client identification
+Advisor -> Frontend: Upload verified identification
+Frontend -> Storage: Upload verified identification via signed url
+
+== Email Automation ==
+Advisor -> Frontend: Trigger email automation
+Frontend -> Backend: Trigger email automation
+Backend -> Lambda: Trigger email automation via AWS API Gateway (azure_access_token, fund_emails, file_paths)
+Lambda -> Storage: Request client forms and verified identification using file_paths
+Storage -> Lambda: Client forms & verified identification
+Lambda -> Lambda: Structure email body
+Lambda -> Lambda: Send emails to Funds via Microsoft Graph API using azure_access_token
+
+@enduml
