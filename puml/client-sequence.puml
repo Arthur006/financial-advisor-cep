@@ -1,0 +1,55 @@
+@startuml
+
+actor Client
+participant "CEP App Frontend" as Frontend
+participant "CEP App Backend" as Backend
+participant "Supabase PostgresSQL" as Postgres
+participant "Supabase Storage" as Storage
+participant "AWS S3 Bucket" as Bucket
+participant "AWS Lambda" as Lambda
+
+== Details Page ==
+Client -> Frontend: Submits details
+Frontend -> Backend: Submit details in form
+Backend -> Postgres: Store client information
+Storage -> Backend: Download pdf third-party-template
+Backend -> Backend: Populate template with client info
+Backend -> Storage: Store populated pdf in Storage
+Frontend -> Frontend: Route to '/forms'
+
+== Forms Page ==
+Client -> Frontend: Downloads populated forms
+Frontend -> Backend: Gets signed url
+Backend -> Storage: Gets signed url
+Storage -> Backend: Signed download url
+Backend -> Frontend: Signed download url
+Frontend -> Storage: Download data from signed url
+Storage -> Frontend: Filled forms
+Frontend -> Client: Filled forms
+Client -> Frontend: Upload signed forms
+Frontend -> Backend: Gets signed upload url
+Backend -> Bucket: Gets signed upload url
+Bucket -> Backend: Signed upload url
+Backend -> Frontend: Signed upload url
+Frontend -> Bucket: Upload signed forms (large images)
+Bucket -> Lambda: Trigger Resize
+Lambda -> Lambda: Resize Image
+Lambda -> Storage: Store resized images
+Frontend -> Frontend: Route to '/identification'
+
+== Identification ==
+Client -> Frontend: Upload identification
+Frontend -> Backend: Gets signed upload url
+Backend -> Bucket: Gets signed upload url
+Bucket -> Backend: Signed upload url
+Backend -> Frontend: Signed upload url
+Frontend -> Bucket: Upload identification (large image)
+Bucket -> Lambda: Trigger Resize
+Lambda -> Lambda: Resize Image
+Lambda -> Storage: Store resized image
+Frontend -> Frontend: Route to '/done'
+
+== Done Page ==
+Frontend -> Frontend: Sign out
+
+@enduml
