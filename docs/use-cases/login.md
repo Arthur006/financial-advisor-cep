@@ -1,4 +1,4 @@
-# Login Process
+# Login
 The login process for advisors and clients are quite different.
 
 Advisors login using social-auth with their outlook account.

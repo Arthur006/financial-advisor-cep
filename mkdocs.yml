@@ -1,7 +1,12 @@
 site_name: Financial Advisor CEP Docs
 theme:
   name: material
-
+nav:
+  - Home: index.md
+  - Use Cases:
+    - Login: use-cases/login.md
+    - Client info capture: use-cases/client-info-capture.md
+    - Client info processing : use-cases/client-info-processing.md
 plugins:
   - plantuml:
       puml_url: http://plantuml:8080/
