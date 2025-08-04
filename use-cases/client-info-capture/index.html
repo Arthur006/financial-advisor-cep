@@ -9,8 +9,10 @@
       
       
       
-        <link rel="prev" href="../client-process/">
+        <link rel="prev" href="../login/">
       
+      
+        <link rel="next" href="../client-info-processing/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +20,7 @@
     
     
       
-        <title>Login Process - Financial Advisor CEP Docs</title>
+        <title>Client info capture - Financial Advisor CEP Docs</title>
       
     
     
@@ -64,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#login-process" class="md-skip">
+        <a href="#client-info-capture" class="md-skip">
           Skip to content
         </a>
       
@@ -100,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Login Process
+              Client info capture
             
           </span>
         </div>
@@ -161,7 +163,7 @@
   
   
   <span class="md-ellipsis">
-    Financial Advisor CEP
+    Home
     
   </span>
   
@@ -196,7 +198,7 @@
   
   
   <span class="md-ellipsis">
-    Features
+    Use Cases
     
   </span>
   
@@ -207,7 +209,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Features
+            Use Cases
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -218,12 +220,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../client-process/" class="md-nav__link">
+      <a href="../login/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Client Process
+    Login
     
   </span>
   
@@ -250,18 +252,91 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Client info capture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
-    Login Process
+    Client info capture
     
   </span>
   
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence Diagram
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../client-info-processing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Client info processing
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -294,6 +369,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sequence-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sequence Diagram
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -308,14 +409,39 @@
 
 
 
-<h1 id="login-process">Login Process</h1>
-<p>The login process for advisors and clients are quite different.</p>
-<p>Advisors login using social-auth with their outlook account.</p>
-<p>Outlook social sign-in is used because after logging in, the app receives an <strong>access_token</strong> which can be used by <strong>Microsft Graph API</strong> to send emails on behalf of the logged-in advisor.
-Outlook is also very commonly used in professional industries and would target the most amount of advisors.</p>
-<p>The client login process is designed to be easy. A client does not need to sign-up, rather they just use their email and input a verification code sent to that email.</p>
-<p>The login process is described by the sequence diagram below:</p>
-<p><img alt="" src="../../images/login-sequence.svg" /></p>
+<h1 id="client-info-capture">Client info capture</h1>
+<p>The client is guided through a wizard-like interface, each page collects some information of the client and redirects the client to the next.</p>
+<h2 id="overview">Overview</h2>
+<p>High level overview is described by the table below:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.</td>
+<td>Collect client information [Name, Address, Policy Name(s), Account Number(s)]</td>
+</tr>
+<tr>
+<td>2.</td>
+<td>Download pre-filled third-party-consent form, sign, upload</td>
+</tr>
+<tr>
+<td>3.</td>
+<td>Upload photo identification of client</td>
+</tr>
+<tr>
+<td>4.</td>
+<td>Allow client to sign-out or go back to previous steps</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sequence-diagram">Sequence Diagram</h2>
+<p>This process is detailed more clearly in the sequence diagram below:</p>
+<p><img alt="" src="../../images/client-sequence.svg" /></p>
 
 
 
