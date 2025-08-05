@@ -37,7 +37,7 @@ Lambda -> Lambda: Resize Image
 Lambda -> Storage: Store resized images
 Frontend -> Frontend: Route to '/identification'
 
-== Identification ==
+== Identification Page ==
 Client -> Frontend: Upload identification
 Frontend -> Backend: Gets signed upload url
 Backend -> Bucket: Gets signed upload url

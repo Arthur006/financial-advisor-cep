@@ -19,7 +19,7 @@ alt Advisor is Invited
     Auth -> App: Authenticated session
     App -> Advisor: Redirect to '/dashboard' page
     Advisor -> App: Create a new client (Name, Email)
-    App -> Postgres: Create row in 'clients' table (PK_advisor_id, Name, Email)
+    App -> Postgres: Create row in 'clients' table\n[PK_advisor_id, Name, Email]
     App -> Auth: Create new user using email sign-up
 else Advisor is not Invited
     App -> Advisor: Redirect to '/error' page
@@ -34,7 +34,7 @@ alt Client exists
     App -> Client: Redirect to '/details' page
 else Client does not exist
     Auth -> App: Error client does not exist
-    App -> Client: Display error (not registed in system)
+    App -> Client: Display error
 end
 
 @enduml
