@@ -14,7 +14,7 @@ To reduce the overall friction of this process, a web application was created th
 
 - Allow advisors to register new clients (via name and email)
 - Provide set forms to capture client information reliably
-- Automatically populate third-patry-consent form
+- Automatically populate third-party-consent form
 - Handle image uploads of the signed client forms
 - Allow advisors to verify client information
 - Automate advisor emails to the client's super/insurance companies
@@ -33,3 +33,13 @@ Context diagram shows the interaction between all systems involved in the web ap
 Container diagram provides more details on the internal operation of all systems involved in the web app.
 
 ![](images/container.svg)
+
+
+## 3. Use Cases
+Some example use cases have been described here:
+
+1. [Login](./use-cases/login.md)
+1. [Client info capture](./use-cases/client-info-capture.md)
+1. [Client info processing](./use-cases/client-info-processing.md)
+
+**Note:** it is recommended that the use-cases be followed in order, as the previous use-case provides context for the next.
